@@ -1,0 +1,93 @@
+<template>
+  <b-button class="custom-button hvr-sweep-to-right" size="lg" @click="onClick">
+    <slot></slot>
+  </b-button>
+</template>
+
+<script>
+export default {
+  name: "BuyButton",
+  props: {
+    onClick: {
+      type: Function,
+      required: true
+    }
+  }
+};
+</script>
+
+<style lang="less" scoped>
+@import "../styles/variables";
+
+.custom-button {
+  min-width: 8em;
+  padding: 0.5em 0;
+  background: @orange;
+  border: 1px solid @textDefault !important;
+  outline: none !important;
+  text-transform: uppercase;
+  color: @textDefault!important;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  @media @tablet {
+    width: 80%;
+  }
+
+  &:hover {
+    color: @bgDefault!important;
+  }
+
+  &:focus {
+    color: @bgDefault!important;
+    outline: none !important;
+    -webkit-box-shadow: none !important;
+  }
+}
+
+/* Sweep To Right */
+.hvr-sweep-to-right {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.hvr-sweep-to-right:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: @bgLight;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  border-radius: 0.3rem;
+}
+.hvr-sweep-to-right:hover,
+.hvr-sweep-to-right:focus,
+.hvr-sweep-to-right:active {
+  color: @bgDefault;
+}
+.hvr-sweep-to-right:hover:before,
+.hvr-sweep-to-right:focus:before,
+.hvr-sweep-to-right:active:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+</style>
